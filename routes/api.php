@@ -15,8 +15,10 @@ use App\Http\Controllers\RequestsController;
 |
 */
 
-Route::get('/req', [RequestsController::class, 'index']);
-Route::get('/req/{goldar}', [RequestsController::class, 'filter']);
+Route::get('/getReq', [RequestsController::class, 'index']);
+Route::get('/getReq/{goldar}', [RequestsController::class, 'filter']);
+Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail']);
+
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
