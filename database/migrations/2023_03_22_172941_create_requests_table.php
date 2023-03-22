@@ -17,6 +17,7 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->bigInteger('rs_id');
             $table->bigInteger('user_id');
+            $table->string('pasien_goldar');
             $table->string('requests_goldar');
             $table->string('requests_jenis');
             $table->integer('requests_jumlah');

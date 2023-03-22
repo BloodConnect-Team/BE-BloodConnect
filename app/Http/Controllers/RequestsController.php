@@ -7,17 +7,26 @@ use Illuminate\Support\Facades\DB;
 class RequestsController extends Controller
 {
     public function index(){
-        $respons = DB::table('requests')->get();
+        $respons = DB::table('requests')
+        ->join('rs', 'requests.rs_id', '=', 'rs.id')
+        ->get();
         return response()->json(['data' => $respons]);
     }
 
     public function filter($goldar){
-        $respons = DB::table('requests')->where('requests_goldar', '=', $goldar)->get();
+        $respons = DB::table('requests')
+        ->join('rs', 'requests.rs_id', '=', 'rs.id')
+        ->where('requests_goldar', '=', $goldar)
+        ->get();
         return response()->json(['data' => $respons]);
     }
 
     public function detail($id){
-        $respons = DB::table('requests')->where('id', '=', $id)->get();
+        $respons = DB::table('requests')
+        ->join('rs', 'requests.rs_id', '=', 'rs.id')
+        ->where('requests.id', '=', $id)
+        ->get();
         return response()->json($respons);
     }
+    
 }
