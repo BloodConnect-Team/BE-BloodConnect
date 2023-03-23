@@ -23,6 +23,7 @@ class CreateRequestsTable extends Migration
             $table->integer('requests_jumlah');
             $table->string('requests_hp');
             $table->timestamp('requests_waktu')->nullable();
+            $table->text('requests_catatan')->nullable();
             $table->timestamps();
         });
     }

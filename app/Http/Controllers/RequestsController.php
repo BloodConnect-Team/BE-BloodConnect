@@ -41,8 +41,8 @@ class RequestsController extends Controller
     public function filter($goldar){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id')
-            ->join('users', 'requests.user_id', '=', 'users.id')
+            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('users', 'requests.user_id', '=', 'users.id_users')
             ->where('requests_goldar', '=', $goldar)
             ->get();
             return response()->json([
@@ -69,9 +69,9 @@ class RequestsController extends Controller
     public function detail($id){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id')
-            ->join('users', 'requests.user_id', '=', 'users.id')
-            ->where('requests.id', '=', $id)
+            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('users', 'requests.user_id', '=', 'users.id_users')
+            ->where('requests.id_requests', '=', $id)
             ->get();
             return response()->json([
 
