@@ -14,14 +14,15 @@ class CreateRequestsTable extends Migration
     public function up()
     {
         Schema::create('requests', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_requests');
             $table->bigInteger('rs_id');
             $table->bigInteger('user_id');
-            $table->string('pasien_goldar');
+            $table->string('requests_pasien');
             $table->string('requests_goldar');
             $table->string('requests_jenis');
             $table->integer('requests_jumlah');
             $table->string('requests_hp');
+            $table->timestamp('requests_waktu')->nullable();
             $table->timestamps();
         });
     }

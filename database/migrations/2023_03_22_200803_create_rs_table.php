@@ -14,7 +14,7 @@ class CreateRsTable extends Migration
     public function up()
     {
         Schema::create('rs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_rs');
             $table->string('rs_nama');
             $table->string('rs_kontak');
             $table->string('rs_alamat');
