@@ -51,7 +51,7 @@ class RequestsController extends Controller
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch all',
+                'message' => 'Fetch filter: '.$goldar,
                 'data' => RequestsResource::collection($respons)
 
             ], Response::HTTP_OK);
@@ -79,7 +79,7 @@ class RequestsController extends Controller
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch all',
+                'message' => 'Fetch detail id: ' . $id,
                 'data' => DetailRequestsResource::collection($respons)->first()
 
             ], Response::HTTP_OK);
@@ -99,10 +99,10 @@ class RequestsController extends Controller
     public function add(Request $request)
     {    
         $validator = Validator::make($request->all(), [
+
             'rs' => 'required',
             'user' => 'required',
             'nama_pasien' => 'required',
-            'pasien_goldar' => 'required',
             'pasien_goldar' => 'required',
             'jenis_donor' => 'required',
             'jumlah_kantong' => 'required',
@@ -112,30 +112,34 @@ class RequestsController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
+
                 'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'success' => false,
                 'message' => $validator->errors(),
-                'data' => [],
+                'data' => []
+
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }else{
+            $requests = new Requests;
+            $requests->rs_id  = $request->rs;
+            $requests->user_id  = $request->user;
+            $requests->requests_pasien  = $request->nama_pasien;
+            $requests->requests_goldar  = $request->pasien_goldar;
+            $requests->requests_jenis  = $request->jenis_donor;
+            $requests->requests_jumlah  = $request->jumlah_kantong;
+            $requests->requests_hp  = $request->kontak_peson;
+            $requests->requests_catatan  = $request->catatan;
+            $respons = $requests->save();
+    
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Requests created successfully.',
+                'data' => $respons
+
+            ], Response::HTTP_OK);
         }
-
-        $requests = new Requests;
-        $requests->rs_id  = $request->rs;
-        $requests->user_id  = $request->user;
-        $requests->requests_pasien  = $request->nama_pasien;
-        $requests->requests_goldar  = $request->pasien_goldar;
-        $requests->requests_jenis  = $request->jenis_donor;
-        $requests->requests_jumlah  = $request->jumlah_kantong;
-        $requests->requests_hp  = $request->kontak_peson;
-        $requests->requests_catatan  = $request->catatan;
-        $respons = $requests->save();
-
-        return response()->json([
-            'response' => Response::HTTP_OK,
-            'success' => true,
-            'message' => 'Requests created successfully.',
-            'data' => $respons,
-        ], Response::HTTP_OK);
     }
 
     
