@@ -54,13 +54,11 @@ Should return something like:
 
 ### Login
 
-POST <http://localhost:3000/api/users/login>
+POST <http://localhost:3000/api/auth/login>
 
 ```
-
   "email": " "
   "password": ""
-
 ```
 
 Should return something like:
