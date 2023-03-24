@@ -18,6 +18,8 @@ use App\Http\Controllers\RequestsController;
 Route::get('/getReq', [RequestsController::class, 'index']);
 Route::get('/getReq/{goldar}', [RequestsController::class, 'filter']);
 Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail']);
+Route::post('/postReq', [RequestsController::class, 'add']);
+
 
 
 
