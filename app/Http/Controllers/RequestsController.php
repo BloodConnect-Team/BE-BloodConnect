@@ -97,12 +97,39 @@ class RequestsController extends Controller
         }
     }
 
+    public function my(){
+        try {
+            $respons = DB::table('requests')
+            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('users', 'requests.user_id', '=', 'users.id')
+            ->where('requests.user_id', '=', Auth::user()->id)
+            ->get();
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Fetch my all',
+                'data' => DetailRequestsResource::collection($respons)
+
+            ], Response::HTTP_OK);
+            
+        } catch (QueryException $e) {
+            return response()->json([
+
+                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => []
+
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function add(Request $request)
     {    
         $validator = Validator::make($request->all(), [
 
             'rs' => 'required',
-            // 'user' => 'required',
             'nama_pasien' => 'required',
             'pasien_goldar' => 'required',
             'jenis_donor' => 'required',

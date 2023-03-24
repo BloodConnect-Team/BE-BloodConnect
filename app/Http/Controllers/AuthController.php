@@ -77,7 +77,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        // return response()->json(auth()->user());
+        return response()->json(auth()->user());
         // return dd(Auth::user()->id);  
     }
 
@@ -101,9 +101,12 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
+            'response' => Response::HTTP_OK,
+            'success' => true,
+            'message' => 'Login Successfully',
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+        ], Response::HTTP_OK);
     }
 }
