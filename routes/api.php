@@ -24,10 +24,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
   Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::get('/getReq', [RequestsController::class, 'index']);
-Route::get('/getReq/{goldar}', [RequestsController::class, 'filter']);
-Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail']);
-Route::post('/postReq', [RequestsController::class, 'add']);
+Route::get('/getReq', [RequestsController::class, 'index'])->middleware('jwt.verify');
+Route::get('/getReq/{goldar}', [RequestsController::class, 'filter'])->middleware('jwt.verify');;
+Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail'])->middleware('jwt.verify');;
+Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');;
 
 
 

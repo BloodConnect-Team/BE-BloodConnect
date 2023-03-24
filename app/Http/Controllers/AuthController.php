@@ -52,7 +52,7 @@ class AuthController extends Controller
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Requests created successfully.',
+                'message' => 'Register successfully.',
                 'data' => $respons
 
             ], Response::HTTP_OK);
@@ -65,11 +65,11 @@ class AuthController extends Controller
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json([
-                'response' => 401,
+                'response' => Response::HTTP_UNAUTHORIZED,
                 'success' => false,
                 'message' => 'Unauthorized',
                 'data' => [],
-            ], 401);
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         return $this->respondWithToken($token);
@@ -77,7 +77,8 @@ class AuthController extends Controller
 
     public function me()
     {
-        return response()->json(auth()->user());
+        // return response()->json(auth()->user());
+        // return dd(Auth::user()->id);  
     }
 
     public function logout()
