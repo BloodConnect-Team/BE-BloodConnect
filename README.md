@@ -11,7 +11,7 @@
 
 
 ## How To Start
-- Install dependencies with 'composser install.
+- Install dependencies with `composser install`.
 - rename the .env.example file to .env
 - add mysql database information on .env
 - add TOKEN_SECRET for JWT
@@ -39,14 +39,14 @@ example `Authorization : BaarereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2
 ## Documentation
 
 ### Authentication
-1. register
+#### 1. register
 
-POST <http://localhost:8000/api/auth/register>
+> POST `http://localhost:8000/api/auth/register`
 ```
-  "name": " "
-  "email": " "
-  "password": " "
-  "goldar": " "
+name: required
+email: required
+password: required|email|unique
+goldar: required
 ```
 
 Example suceess Responds:
@@ -59,12 +59,12 @@ Example suceess Responds:
 }
 ```
 
-2. Login
+#### 2. Login
 
-POST <http://localhost:3000/api/auth/login>
+> POST `http://localhost:3000/api/auth/login`
 ```
-  "email": " "
-  "password": ""
+email: required
+password: required
 ```
 
 Example suceess Responds:
@@ -73,17 +73,19 @@ Example suceess Responds:
     "response": 200,
     "success": true,
     "message": "Login Successfully",
-    "access_token": "JWT-Token",
-    "token_type": "bearer",
-    "expires_in": 3600
+        "data": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY3OTcyODY4MSwiZXhwIjoxNjc5NzMyMjgxLCJuYmYiOjE2Nzk3Mjg2ODEsImp0aSI6ImI2RFc1TnBXVWc3bWJPd3MiLCJzdWIiOjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.j3XBkTO-kH9Iu45jW_RJTb2nZiApiA01vwDZUCLqOQ4",
+        "token_type": "bearer",
+        "expires_in": 3600
+    }
 }
 ```
 
 ### Request
 
-1. All Request
+#### 1. All Request
 
-GET <http://localhost:3000/api/getReq>
+> GET `http://localhost:3000/api/getReq`
 
 Example suceess Responds:
 ```JSON
@@ -114,10 +116,10 @@ Example suceess Responds:
 }
 ```
 
-2. Filter blood group
+#### 2. Filter blood group
 
-GET <http://localhost:3000/api/getReq/filter/{goldar}>
-Example <http://localhost:3000/api/getReq/filter/A+>
+> GET `http://localhost:3000/api/getReq/filter/{goldar}`
+> Example `http://localhost:3000/api/getReq/filter/A+`
 
 Example suceess Responds:
 ```JSON
@@ -140,10 +142,10 @@ Example suceess Responds:
 }
 ```
 
-3. Detail Requests
+#### 3. Detail Requests
 
-GET <http://localhost:3000/api/getReq/detail/{id}>
-Example <http://localhost:3000/api/getReq/detail/1>
+> GET `http://localhost:3000/api/getReq/detail/{id}`
+> Example `http://localhost:3000/api/getReq/detail/1`
 
 Example suceess Responds:
 ```JSON
@@ -168,9 +170,9 @@ Example suceess Responds:
 }
 ```
 
-4. My Requests
+#### 4. My Requests
 
-GET <http://localhost:3000/api/getReq/my>
+> GET `http://localhost:3000/api/getReq/my`
 
 Example suceess Responds:
 ```JSON
@@ -210,4 +212,28 @@ Example suceess Responds:
     ]
 }
 ```
+
+#### 5. Add Req
+
+> POST `http://localhost:8000/api/postReq`
+```
+rs : required
+nama_pasien : required
+pasien_goldar : required
+jenis_donor : required
+jumlah_kantong : required
+kontak_peson : required
+catatan : 
+```
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Requests created successfully.",
+    "data": true
+}
+```
+
 
