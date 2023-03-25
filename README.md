@@ -265,7 +265,7 @@ Example suceess Responds:
 }
 ```
 
-####2. UDD list Information 
+#### 2. UDD list Information 
 
 > GET `http://localhost:8000/api/pmi/udd`
 
@@ -289,7 +289,7 @@ Example suceess Responds:
 }
 ```
 
-####2. Blood Stock
+#### 3. Blood Stock
 
 > GET `http://localhost:8000/api/pmi/stok/{udd}`
 > Example `http://localhost:3000/api/pmi/stok/1271`
