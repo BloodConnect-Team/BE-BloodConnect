@@ -86,6 +86,7 @@ Example suceess Responds:
 #### 1. All Request
 
 > GET `http://localhost:3000/api/getReq`
+
 Example suceess Responds:
 ```JSON
 {
@@ -117,7 +118,9 @@ Example suceess Responds:
 
 #### 2. Filter blood group
 
-> GET `http://localhost:3000/api/getReq/filter/{goldar}`,Example `http://localhost:3000/api/getReq/filter/A+`
+> GET `http://localhost:3000/api/getReq/filter/{goldar}`
+> Example `http://localhost:3000/api/getReq/filter/A+`
+
 Example suceess Responds:
 ```JSON
 {
@@ -141,7 +144,9 @@ Example suceess Responds:
 
 #### 3. Detail Requests
 
-> GET `http://localhost:3000/api/getReq/detail/{id}`, Example `http://localhost:3000/api/getReq/detail/1`
+> GET `http://localhost:3000/api/getReq/detail/{id}`
+> Example `http://localhost:3000/api/getReq/detail/1`
+
 Example suceess Responds:
 ```JSON
 {
@@ -168,6 +173,7 @@ Example suceess Responds:
 #### 4. My Requests
 
 > GET `http://localhost:3000/api/getReq/my`
+
 Example suceess Responds:
 ```JSON
 {
