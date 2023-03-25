@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\StokResource;
 use App\Http\Resources\JadwalResource;
 use App\Http\Resources\KontakResource;
 use Illuminate\Database\QueryException;
@@ -22,8 +23,8 @@ class PMIController extends Controller
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch all Kontak UDD',
-                'data' => $respons
+                'message' => 'Fetch all Stok UDD',
+                'data' => StokResource::collection($respons)
 
             ], Response::HTTP_OK);
             
