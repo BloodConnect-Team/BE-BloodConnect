@@ -34,7 +34,9 @@ Route::get('/getReq/my', [RequestsController::class, 'my'])->middleware('jwt.ver
 Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
-Route::get('/pmi/kontak', [PMIController::class, 'kontak']);
+Route::get('/pmi/udd', [PMIController::class, 'udd']);
+Route::get('/pmi/stok/{udd}', [PMIController::class, 'stok']);
+
 
 
 
