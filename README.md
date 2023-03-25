@@ -39,7 +39,7 @@ example `Authorization : BaarereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2
 ## Documentation
 
 ### Authentication
-1. register
+#### 1. register
 
 POST `http://localhost:8000/api/auth/register`
 ```
@@ -59,7 +59,7 @@ Example suceess Responds:
 }
 ```
 
-2. Login
+#### 2. Login
 
 POST `http://localhost:3000/api/auth/login`
 ```
@@ -83,7 +83,7 @@ Example suceess Responds:
 
 ### Request
 
-1. All Request
+#### 1. All Request
 
 GET `http://localhost:3000/api/getReq`
 
@@ -116,7 +116,7 @@ Example suceess Responds:
 }
 ```
 
-2. Filter blood group
+#### 2. Filter blood group
 
 GET `http://localhost:3000/api/getReq/filter/{goldar}`,
 Example `http://localhost:3000/api/getReq/filter/A+`
@@ -142,7 +142,7 @@ Example suceess Responds:
 }
 ```
 
-3. Detail Requests
+#### 3. Detail Requests
 
 GET `http://localhost:3000/api/getReq/detail/{id}`
 Example `http://localhost:3000/api/getReq/detail/1`
@@ -170,7 +170,7 @@ Example suceess Responds:
 }
 ```
 
-4. My Requests
+#### 4. My Requests
 
 GET `http://localhost:3000/api/getReq/my`
 
@@ -213,7 +213,7 @@ Example suceess Responds:
 }
 ```
 
-5. Add Req
+#### 5. Add Req
 
 POST `http://localhost:8000/api/postReq`
 ```
