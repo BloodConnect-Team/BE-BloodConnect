@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'forget' , 'reset']]);
     }
 
     public function register(Request $request)
@@ -75,10 +76,60 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function forget(Request $request ){
+        $cek = User::where('email', $request->email)->first();
+        if($cek == null){
+            return response()->json([
+                'response' => Response::HTTP_NOT_ACCEPTABLE,
+                'success' => false,
+                'message' => 'email is not registered',
+                'data' => [],
+            ], Response::HTTP_NOT_ACCEPTABLE);
+        }else{
+            $token = Str::random(32);
+            DB::table('password_resets')->insert([
+                'email' => $request->email, 
+                'token' => $token, 
+            ]); 
+            // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
+            //     $message->to($request->email);
+            //     $message->subject('Reset Password');
+            // });
+            return response()->json([
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'email sent successfully',
+                'data' => [],
+            ], Response::HTTP_OK);
+        }
+    }
+
+    public function reset($token, Request $request ){
+        $updatePassword = DB::table('password_resets')->where([
+            'email' => $request->email, 
+            'token' => $token
+        ])->first();
+  
+        if(!$updatePassword){
+            return response()->json([
+                'response' => Response::HTTP_FORBIDDEN,
+                'success' => false,
+                'message' => 'Invalid Token',
+                'data' => [],
+            ], Response::HTTP_FORBIDDEN);
+        }
+        User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+        return response()->json([
+            'response' => Response::HTTP_OK,
+            'success' => true,
+            'message' => 'password changed',
+            'data' => [],
+        ], Response::HTTP_OK);    }
+
     public function me()
     {
         return response()->json(auth()->user());
-        // return dd(Auth::user()->id);  
     }
 
     public function logout()
@@ -104,9 +155,12 @@ class AuthController extends Controller
             'response' => Response::HTTP_OK,
             'success' => true,
             'message' => 'Login Successfully',
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'data' => [
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth()->factory()->getTTL() * 60
+            ]
+
         ], Response::HTTP_OK);
     }
 }
