@@ -43,10 +43,10 @@ example `Authorization : BaarereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2
 
 POST `http://localhost:8000/api/auth/register`
 ```
-  "name": " "
-  "email": " "
-  "password": " "
-  "goldar": " "
+name: required
+email: required
+password: required|email|unique
+goldar: required
 ```
 
 Example suceess Responds:
@@ -63,8 +63,8 @@ Example suceess Responds:
 
 POST `http://localhost:3000/api/auth/login`
 ```
-  "email": " "
-  "password": ""
+email: required
+password: required
 ```
 
 Example suceess Responds:
@@ -212,4 +212,28 @@ Example suceess Responds:
     ]
 }
 ```
+
+5. Add Req
+
+POST `http://localhost:8000/api/postReq`
+```
+rs : required
+nama_pasien : required
+pasien_goldar : required
+jenis_donor : required
+jumlah_kantong : required
+kontak_peson : required
+catatan : 
+```
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Requests created successfully.",
+    "data": true
+}
+```
+
 
