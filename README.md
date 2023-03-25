@@ -32,6 +32,9 @@
 - GET <http://localhost:8000/api/getReq/my> (need authorization)
 - POST <http://localhost:8000/api/postReq> (need authorization)
 
+## Authorization
+set Headers `Authorization : Baarer<YOUR_TOKEN>`
+example `Authorization : BaarereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg4ODM4Y2U5YWZhMzViMmYxNTM3YjEiLCJpYXQiOjE2NTMxMTM3OTR9.7wdHLeDIxzJCm7ZyOWJSlk1b1HPp2Y4cxIVNzcnjf5g`
 
 ## Documentation
 
@@ -113,8 +116,8 @@ Example suceess Responds:
 
 2. Filter blood group
 
-GET <http://localhost:3000/api/filter/{goldar}>
-Example <http://localhost:3000/api/filter/A+>
+GET <http://localhost:3000/api/getReq/filter/{goldar}>
+Example <http://localhost:3000/api/getReq/filter/A+>
 
 Example suceess Responds:
 ```JSON
@@ -137,27 +140,74 @@ Example suceess Responds:
 }
 ```
 
+3. Detail Requests
 
+GET <http://localhost:3000/api/getReq/detail/{id}>
+Example <http://localhost:3000/api/getReq/detail/1>
 
-
-
-
-
-
-
-
-
-3. GET <http://localhost:3000/api/example>
-set Headers `auth-token : <YOUR_TOKEN>`
-example `auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg4ODM4Y2U5YWZhMzViMmYxNTM3YjEiLCJpYXQiOjE2NTMxMTM3OTR9.7wdHLeDIxzJCm7ZyOWJSlk1b1HPp2Y4cxIVNzcnjf5g`
-
-
-response:
-
+Example suceess Responds:
 ```JSON
 {
-    "title": "Example Title",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel libero turpis. Suspendisse venenatis, nunc nec aliquam mollis, mi libero aliquam nunc, ut condimentum odio metus id nisi. Sed ac ex placerat, egestas dui vel, fermentum leo. Fusce sed velit at enim tempus vehicula. Nulla maximus sit amet turpis id aliquam. Donec ut arcu hendrerit, convallis augue et, laoreet tortor. Proin interdum magna consectetur lacinia posuere. Sed erat nunc, laoreet sed justo id, dapibus imperdiet elit. Vestibulum sit amet ornare ipsum. Sed cursus metus non nisl euismod, eget mollis metus blandit. Nulla facilisi. "
+    "response": 200,
+    "success": true,
+    "message": "Fetch detail id: 1",
+    "data": {
+        "id": 1,
+        "Pasien": "fajar",
+        "GolonganDarah": "A+",
+        "JenisDonor": "WB",
+        "Kebutuhan": 2,
+        "Catatan": "",
+        "Rs": "RS PMI",
+        "Lat": "-7.998964",
+        "Lng": "112.645699",
+        "User": "fajar",
+        "UserGoldar": "",
+        "Created": null
+    }
+}
+```
+
+4. My Requests
+
+GET <http://localhost:3000/api/getReq/my>
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Fetch my all",
+    "data": [
+        {
+            "id": 4,
+            "Pasien": "tes",
+            "GolonganDarah": "O+",
+            "JenisDonor": "WB",
+            "Kebutuhan": 4,
+            "Catatan": null
+            "Rs": "RS PMI",
+            "Lat": "-7.998964",
+            "Lng": "112.645699",
+            "User": "fajar",
+            "UserGoldar": "O+",
+            "Created": null
+        },
+        {
+            "id": 5,
+            "Pasien": "tes",
+            "GolonganDarah": "O+",
+            "JenisDonor": "WB",
+            "Kebutuhan": 4,
+            "Catatan": null
+            "Rs": "RS PMI",
+            "Lat": "-7.998964",
+            "Lng": "112.645699",
+            "User": "fajar",
+            "UserGoldar": "O+",
+            "Created": null
+        }
+    ]
 }
 ```
 
