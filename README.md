@@ -31,6 +31,10 @@
 - GET <http://localhost:8000/api/getReq/detail/{id}> (need authorization)
 - GET <http://localhost:8000/api/getReq/my> (need authorization)
 - POST <http://localhost:8000/api/postReq> (need authorization)
+- GET <http://localhost:8000/api/pmi/jadwal> (need authorization)
+- GET <http://localhost:8000/api/pmi/udd> (need authorization)
+- GET <http://localhost:8000/api/pmi/stok/{udd}> (need authorization)
+
 
 ## Authorization
 set Headers `Authorization : Baarer<YOUR_TOKEN>`
@@ -235,5 +239,97 @@ Example suceess Responds:
     "data": true
 }
 ```
+
+### PMI API
+
+#### 1. schedule today Mobile unit 
+
+> GET `http://localhost:8000/api/pmi/jadwal`
+
+Example suceess Responds:
+```JSON
+{
+    {
+    "response": 200,
+    "success": true,
+    "message": "Fetch all Jadwal MU",
+    "data": [
+       {
+            "Instansi": "KARANG TARUNA JOYUDAN BANGSALAN TERAS",
+            "UDD": "UTD PMI Kabupaten Boyolali",
+            "Target": 50,
+            "Alamat": "Jl. Kantil 14 (RSU Boyolali)"
+        }
+        ]
+    }
+}
+```
+
+####2. UDD list Information 
+
+> GET `http://localhost:8000/api/pmi/udd`
+
+Example suceess Responds:
+```JSON
+{
+    {
+    "response": 200,
+    "success": true,
+    "message": "Fetch all Kontak UDD",
+    "data": [
+       {
+            "ID": "1103",
+            "UDD": "UTD PMI Kabupaten Aceh Timur",
+            "Provinsi": "Aceh",
+            "Telp": "(0641) 426555",
+            "Alamat": "Jl. H. Agus Salim No. 22, Langsa"
+        }
+        ]
+    }
+}
+```
+
+####2. Blood Stock
+
+> GET `http://localhost:8000/api/pmi/stok/{udd}`
+> Example `http://localhost:3000/api/pmi/stok/1271`
+
+Example suceess Responds:
+```JSON
+{
+    {
+    "response": 200,
+    "success": true,
+    "message": "Fetch all Stok UDD",
+    "data": [
+      {
+            "Update": "2023-03-25 23:57:59",
+            "Product": "AHF",
+            "A_pos": 10,
+            "B_pos": 6,
+            "O_pos": 6,
+            "AB_pos": 3,
+            "A_neg": 1,
+            "B_neg": 0,
+            "O_neg": 0,
+            "AB_neg": 0
+        },
+        {
+            "Update": "2023-03-25 23:57:59",
+            "Product": "FFP",
+            "A_pos": 41,
+            "B_pos": 36,
+            "O_pos": 40,
+            "AB_pos": 21,
+            "A_neg": 1,
+            "B_neg": 0,
+            "O_neg": 0,
+            "AB_neg": 0
+        }
+        ]
+    }
+}
+```
+
 
 
