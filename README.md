@@ -11,7 +11,7 @@
 
 
 ## How To Start
-- Install dependencies with 'composser install.
+- Install dependencies with `composser install`.
 - rename the .env.example file to .env
 - add mysql database information on .env
 - add TOKEN_SECRET for JWT
@@ -41,7 +41,7 @@ example `Authorization : BaarereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2
 ### Authentication
 1. register
 
-POST <http://localhost:8000/api/auth/register>
+POST ` <http://localhost:8000/api/auth/register> `
 ```
   "name": " "
   "email": " "
@@ -61,7 +61,7 @@ Example suceess Responds:
 
 2. Login
 
-POST <http://localhost:3000/api/auth/login>
+POST `<http://localhost:3000/api/auth/login>`
 ```
   "email": " "
   "password": ""
