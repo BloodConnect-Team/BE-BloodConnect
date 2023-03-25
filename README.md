@@ -26,14 +26,19 @@
 ## Routes
 - POST <http://localhost:8000/api/auth/register>
 - POST <http://localhost:8000/api/auth/login>
+- GET <http://localhost:8000/api/getReq> (need authorization)
+- GET <http://localhost:8000/api/getReq/filter/{goldar}> (need authorization)
+- GET <http://localhost:8000/api/getReq/detail/{id}> (need authorization)
+- GET <http://localhost:8000/api/getReq/my> (need authorization)
+- POST <http://localhost:8000/api/postReq> (need authorization)
+
 
 ## Documentation
 
-### Register
-
+### Authentication
+1. register
 
 POST <http://localhost:8000/api/auth/register>
-
 ```
   "name": " "
   "email": " "
@@ -41,8 +46,7 @@ POST <http://localhost:8000/api/auth/register>
   "goldar": " "
 ```
 
-Should return something like:
-
+Example suceess Responds:
 ```JSON
 {
     "response": 200,
@@ -52,17 +56,15 @@ Should return something like:
 }
 ```
 
-### Login
+2. Login
 
 POST <http://localhost:3000/api/auth/login>
-
 ```
   "email": " "
   "password": ""
 ```
 
-Should return something like:
-
+Example suceess Responds:
 ```JSON
 {
     "response": 200,
@@ -73,6 +75,77 @@ Should return something like:
     "expires_in": 3600
 }
 ```
+
+### Request
+
+1. All Request
+
+GET <http://localhost:3000/api/getReq>
+
+Example suceess Responds:
+```JSON
+{
+    {
+    "response": 200,
+    "success": true,
+    "message": "Fetch all",
+    "data": [
+        {
+            "id": 1,
+            "Pasien": "fajar",
+            "GolonganDarah": "A+",
+            "JenisDonor": "WB",
+            "Rs": "RS PMI",
+            "Created": null
+        },
+        {
+            "id": 2,
+            "Pasien": "wawan",
+            "GolonganDarah": "O+",
+            "JenisDonor": "TC",
+            "Rs": "RS PMI",
+            "Created": null
+        }
+        ]
+    }
+}
+```
+
+2. Filter blood group
+
+GET <http://localhost:3000/api/filter/{goldar}>
+Example <http://localhost:3000/api/filter/A+>
+
+Example suceess Responds:
+```JSON
+{
+    {
+    "response": 200,
+    "success": true,
+    "message": "Fetch all",
+    "data": [
+        {
+            "id": 1,
+            "Pasien": "fajar",
+            "GolonganDarah": "A+",
+            "JenisDonor": "WB",
+            "Rs": "RS PMI",
+            "Created": null
+        }
+        ]
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
 
 3. GET <http://localhost:3000/api/example>
 set Headers `auth-token : <YOUR_TOKEN>`
