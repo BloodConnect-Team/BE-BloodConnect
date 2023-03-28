@@ -18,6 +18,7 @@ class CreateBdrsTable extends Migration
             $table->string('bdrs_nama');
             $table->string('bdrs_kontak');
             $table->string('bdrs_alamat');
+            $table->string('bdrs_kota');
             $table->string('bdrs_lat');
             $table->string('bdrs_lng');
             $table->timestamps();

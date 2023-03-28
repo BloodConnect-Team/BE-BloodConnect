@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PMIController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BdrsController;
 use App\Http\Controllers\RequestsController;
 
 /*
@@ -33,10 +34,12 @@ Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail'])->middle
 Route::get('/getReq/my', [RequestsController::class, 'my'])->middleware('jwt.verify');
 Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');
 
+Route::get('/getBDRS', [BdrsController::class, 'get']);
+
+
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
 Route::get('/pmi/udd', [PMIController::class, 'udd']);
 Route::get('/pmi/stok/{udd}', [PMIController::class, 'stok']);
-// Route::get('/pmi/berita', [PMIController::class, 'berita']);
 
 
 
