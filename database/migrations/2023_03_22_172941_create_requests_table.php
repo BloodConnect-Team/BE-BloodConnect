@@ -15,14 +15,15 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id_requests');
-            $table->bigInteger('rs_id');
+            $table->bigInteger('bdrs_id');
             $table->bigInteger('user_id');
+            $table->string('requests_slug');
             $table->string('requests_pasien');
-            $table->string('requests_goldar');
+            $table->enum('requests_goldar', ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']);
             $table->string('requests_jenis');
             $table->integer('requests_jumlah');
             $table->string('requests_hp');
-            $table->timestamp('requests_waktu')->nullable();
+            $table->timestamp('requests_waktu')->useCurrent();
             $table->text('requests_catatan')->nullable();
             $table->timestamps();
         });

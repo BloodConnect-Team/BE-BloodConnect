@@ -129,7 +129,7 @@ class RequestsController extends Controller
     {    
         $validator = Validator::make($request->all(), [
 
-            'rs' => 'required',
+            'bdrs' => 'required',
             'nama_pasien' => 'required',
             'pasien_goldar' => 'required',
             'jenis_donor' => 'required',
@@ -149,7 +149,7 @@ class RequestsController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }else{
             $requests = new Requests;
-            $requests->rs_id  = $request->rs;
+            $requests->bdrs_id  = $request->bd;
             $requests->user_id  = Auth::user()->id;
             $requests->requests_pasien  = $request->nama_pasien;
             $requests->requests_goldar  = $request->pasien_goldar;

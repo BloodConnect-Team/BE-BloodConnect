@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRsTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rs', function (Blueprint $table) {
-            $table->bigIncrements('id_rs');
-            $table->string('rs_nama');
-            $table->string('rs_kontak');
-            $table->string('rs_alamat');
-            $table->string('rs_lat');
-            $table->string('rs_lng');
+        Schema::create('news', function (Blueprint $table) {
+            $table->bigIncrements('id_news');
+            $table->bigInteger('user_id');
+            $table->string('slug');
+            $table->string('title');
+            $table->longText('content');
+            $table->timestamp('news_created')->useCurrent();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateRsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rs');
+        //
     }
 }

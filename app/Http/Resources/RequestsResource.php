@@ -19,7 +19,8 @@ class RequestsResource extends JsonResource
             'Pasien' => $this->requests_pasien,
             'GolonganDarah' => $this->requests_goldar,
             'JenisDonor' => $this->requests_jenis,
-            'Rs' => $this->rs_nama,
+            'BDRS' => $this->bdrs_nama,
+            'Kota' => $this->bdrs_kota,
             'Created' => $this->requests_waktu
         ];
     }
