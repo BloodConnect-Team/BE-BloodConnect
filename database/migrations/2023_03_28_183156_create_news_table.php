@@ -19,6 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->longText('content');
+            $table->timestamp('news_created')->useCurrent();
             $table->timestamps();
         });
     }

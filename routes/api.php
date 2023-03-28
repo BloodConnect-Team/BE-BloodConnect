@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PMIController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BdrsController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RequestsController;
 
 /*
@@ -35,6 +36,8 @@ Route::get('/getReq/my', [RequestsController::class, 'my'])->middleware('jwt.ver
 Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');
 
 Route::get('/getBDRS', [BdrsController::class, 'get']);
+
+Route::get('/getNews', [NewsController::class, 'get']);
 
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
