@@ -38,6 +38,7 @@ Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.ver
 Route::get('/getBDRS', [BdrsController::class, 'get']);
 
 Route::get('/getNews', [NewsController::class, 'get']);
+Route::get('/getNews/{id}', [NewsController::class, 'ById']);
 
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);

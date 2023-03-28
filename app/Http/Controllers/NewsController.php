@@ -35,4 +35,31 @@ class NewsController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function ById($id){
+        try {
+            $respons = DB::table('news')
+            ->join('users', 'news.user_id', '=', 'users.id')
+            ->where('id_news', '=', $id)
+            ->get();
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Fetch News By id : '.$id,
+                'data' => NewsResource::collection($respons)->first()
+
+            ], Response::HTTP_OK);
+            
+        } catch (QueryException $e) {
+            return response()->json([
+
+                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => []
+
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
