@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRsTable extends Migration
+class CreateBdrsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rs', function (Blueprint $table) {
-            $table->bigIncrements('id_rs');
-            $table->string('rs_nama');
-            $table->string('rs_kontak');
-            $table->string('rs_alamat');
-            $table->string('rs_lat');
-            $table->string('rs_lng');
+        Schema::create('bdrs', function (Blueprint $table) {
+            $table->bigIncrements('id_bdrs');
+            $table->string('bdrs_nama');
+            $table->string('bdrs_kontak');
+            $table->string('bdrs_alamat');
+            $table->string('bdrs_lat');
+            $table->string('bdrs_lng');
             $table->timestamps();
         });
     }

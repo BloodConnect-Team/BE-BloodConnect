@@ -15,8 +15,9 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id_requests');
-            $table->bigInteger('rs_id');
+            $table->bigInteger('bdrs_id');
             $table->bigInteger('user_id');
+            $table->string('requests_slug');
             $table->string('requests_pasien');
             $table->enum('requests_goldar', ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-']);
             $table->string('requests_jenis');
