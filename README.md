@@ -94,7 +94,6 @@ Example suceess Responds:
 Example suceess Responds:
 ```JSON
 {
-    {
     "response": 200,
     "success": true,
     "message": "Fetch all",
@@ -116,7 +115,6 @@ Example suceess Responds:
             "Created": null
         }
         ]
-    }
 }
 ```
 
@@ -128,7 +126,6 @@ Example suceess Responds:
 Example suceess Responds:
 ```JSON
 {
-    {
     "response": 200,
     "success": true,
     "message": "Fetch all",
@@ -142,7 +139,6 @@ Example suceess Responds:
             "Created": null
         }
         ]
-    }
 }
 ```
 
@@ -272,7 +268,6 @@ Example suceess Responds:
 Example suceess Responds:
 ```JSON
 {
-    {
     "response": 200,
     "success": true,
     "message": "Fetch all Kontak UDD",
@@ -285,7 +280,6 @@ Example suceess Responds:
             "Alamat": "Jl. H. Agus Salim No. 22, Langsa"
         }
         ]
-    }
 }
 ```
 
@@ -297,7 +291,6 @@ Example suceess Responds:
 Example suceess Responds:
 ```JSON
 {
-    {
     "response": 200,
     "success": true,
     "message": "Fetch all Stok UDD",
@@ -327,7 +320,6 @@ Example suceess Responds:
             "AB_neg": 0
         }
         ]
-    }
 }
 ```
 
