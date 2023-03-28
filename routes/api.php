@@ -43,6 +43,7 @@ Route::get('/getNews/{id}', [NewsController::class, 'ById']);
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
 Route::get('/pmi/udd', [PMIController::class, 'udd']);
+Route::get('/pmi/udd/{id}', [PMIController::class, 'uddByid']);
 Route::get('/pmi/stok/{udd}', [PMIController::class, 'stok']);
 
 

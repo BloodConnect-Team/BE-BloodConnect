@@ -97,4 +97,30 @@ class PMIController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function uddByid($id){
+        try {
+            $respons = DB::connection('mysql2')
+            ->table('udd')
+            ->where('id', '=', $id)
+            ->get();
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Fetch UDD By Id : '.$id,
+                'data' => KontakResource::collection($respons)->first()
+
+            ], Response::HTTP_OK);
+            
+        } catch (QueryException $e) {
+            return response()->json([
+
+                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => []
+
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
