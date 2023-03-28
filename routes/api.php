@@ -36,9 +36,7 @@ Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.ver
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
 Route::get('/pmi/udd', [PMIController::class, 'udd']);
 Route::get('/pmi/stok/{udd}', [PMIController::class, 'stok']);
-
-
-
+// Route::get('/pmi/berita', [PMIController::class, 'berita']);
 
 
 
