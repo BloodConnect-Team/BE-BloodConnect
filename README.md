@@ -31,8 +31,10 @@
 - GET <http://localhost:8000/api/getReq/detail/{id}> (need authorization)
 - GET <http://localhost:8000/api/getReq/my> (need authorization)
 - POST <http://localhost:8000/api/postReq> (need authorization)
+
 - GET <http://localhost:8000/api/pmi/jadwal> (need authorization)
 - GET <http://localhost:8000/api/pmi/udd> (need authorization)
+- GET <http://localhost:8000/api/pmi/udd/{id}> (need authorization)
 - GET <http://localhost:8000/api/pmi/stok/{udd}> (need authorization)
 
 
@@ -283,7 +285,29 @@ Example suceess Responds:
 }
 ```
 
-#### 3. Blood Stock
+#### 3. UDD get Information 
+
+> GET `http://localhost:8000/api/pmi/udd/{id}`
+> Example `http://localhost:3000/api/pmi/udd/1103`
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Fetch udd id: 1103",
+    "data": 
+       {
+            "ID": "1103",
+            "UDD": "UTD PMI Kabupaten Aceh Timur",
+            "Provinsi": "Aceh",
+            "Telp": "(0641) 426555",
+            "Alamat": "Jl. H. Agus Salim No. 22, Langsa"
+        ]
+}
+```
+
+#### 4. Blood Stock
 
 > GET `http://localhost:8000/api/pmi/stok/{udd}`
 > Example `http://localhost:3000/api/pmi/stok/1271`
