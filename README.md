@@ -32,6 +32,11 @@
 - GET <http://localhost:8000/api/getReq/my> (need authorization)
 - POST <http://localhost:8000/api/postReq> (need authorization)
 
+- GET <http://localhost:8000/api/getBDRS> (need authorization)
+
+- GET <http://localhost:8000/api/getNews> (need authorization)
+- GET <http://localhost:8000/api/getNews/{id}> (need authorization)
+
 - GET <http://localhost:8000/api/pmi/jadwal> (need authorization)
 - GET <http://localhost:8000/api/pmi/udd> (need authorization)
 - GET <http://localhost:8000/api/pmi/udd/{id}> (need authorization)
@@ -238,6 +243,84 @@ Example suceess Responds:
 }
 ```
 
+### BDRS (Bank Darah Rumah Sakit)
+
+#### 1. Get BDRS
+
+> GET `http://localhost:8000/api/getBDRS`
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Fetch all",
+    "data": [
+        {
+            "id": 1,
+            "BDRS": "RS. PMI",
+            "Kota": "Kota Lhokseumawe",
+            "Alamat": "Jl Darussalam, Kota Lhokseumawe",
+            "Kontak": "1234567890",
+            "Lat": "1234",
+            "Lng": "1234"
+        }
+    ]
+}
+```
+
+### News
+
+#### 1. News List
+
+> GET `http://localhost:8000/api/pmi/getNews`
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Fetch all",
+    "data": [
+        {
+            "id": 1,
+            "Title": "berita 1",
+            "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "Author": "fajar",
+            "date": "2023-03-29 02:43:44"
+        },
+        {
+            "id": 2,
+            "Title": "Lorem ipsum dolar sit amet",
+            "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "Author": "fajar",
+            "date": "2023-03-29 22:44:33"
+        }
+    ]
+}
+```
+
+#### 2. News Detail
+
+> GET `http://localhost:8000/api/pmi/getNews`
+> EXAMPLE `http://localhost:8000/api/pmi/getNews/2`
+
+Example suceess Responds:
+```JSON
+{
+    "response": 200,
+    "success": true,
+    "message": "Fetch all",
+    "data": {
+            "id": 2,
+            "Title": "Lorem ipsum dolar sit amet",
+            "Content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "Author": "fajar",
+            "date": "2023-03-29 22:44:33"
+        }
+}
+```
+
 ### PMI API
 
 #### 1. schedule today Mobile unit 
@@ -303,7 +386,7 @@ Example suceess Responds:
             "Provinsi": "Aceh",
             "Telp": "(0641) 426555",
             "Alamat": "Jl. H. Agus Salim No. 22, Langsa"
-        ]
+        }
 }
 ```
 
