@@ -16,7 +16,7 @@ class RequestsController extends Controller
     public function index(){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->orderBy('requests.id_requests', 'asc')
             ->get();
@@ -44,7 +44,7 @@ class RequestsController extends Controller
     public function filter($goldar){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests_goldar', '=', $goldar)
             ->get();

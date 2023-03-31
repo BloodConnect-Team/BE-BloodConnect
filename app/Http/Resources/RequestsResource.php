@@ -16,6 +16,7 @@ class RequestsResource extends JsonResource
     {
         return[
             'id' => $this->id_requests,
+            'Slug' => $this->requests_slug,
             'Pasien' => $this->requests_pasien,
             'GolonganDarah' => $this->requests_goldar,
             'JenisDonor' => $this->requests_jenis,
