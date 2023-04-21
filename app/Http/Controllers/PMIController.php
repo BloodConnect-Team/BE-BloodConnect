@@ -41,20 +41,17 @@ class PMIController extends Controller
     }
 
     public function jadwal(){
-        $tgl = date("Y-m-d"." 00:00:00");
+        $tgl = date("Y-m-d");
         try {
-            $respons = DB::connection('mysql2')
-            ->table('kegiatan')
-            ->join('udd', 'kegiatan.udd', '=', 'udd.id')
-            ->orderBy('udd.id')
-            ->where('kegiatan.TglPenjadwalan', '=', $tgl)
+            $respons = DB::table('jadwals')
+            ->where('waktu', ">=", $tgl)
+            ->orderBy('waktu', 'desc')
             ->get();
-
             return response()->json([
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch all Jadwal MU',
+                'message' => 'Fetch all Jadwal',
                 'data' => JadwalResource::collection($respons)
 
             ], Response::HTTP_OK);
@@ -71,56 +68,4 @@ class PMIController extends Controller
         }
     }
 
-    public function udd(){
-        try {
-            $respons = DB::connection('mysql2')
-            ->table('udd')
-            ->orderBy('id', 'ASC')
-            ->get();
-            return response()->json([
-
-                'response' => Response::HTTP_OK,
-                'success' => true,
-                'message' => 'Fetch all Kontak UDD',
-                'data' => KontakResource::collection($respons)
-
-            ], Response::HTTP_OK);
-            
-        } catch (QueryException $e) {
-            return response()->json([
-
-                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'success' => false,
-                'message' => $e->getMessage(),
-                'data' => []
-
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-    public function uddByid($id){
-        try {
-            $respons = DB::connection('mysql2')
-            ->table('udd')
-            ->where('id', '=', $id)
-            ->get();
-            return response()->json([
-
-                'response' => Response::HTTP_OK,
-                'success' => true,
-                'message' => 'Fetch UDD By Id : '.$id,
-                'data' => KontakResource::collection($respons)->first()
-
-            ], Response::HTTP_OK);
-            
-        } catch (QueryException $e) {
-            return response()->json([
-
-                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                'success' => false,
-                'message' => $e->getMessage(),
-                'data' => []
-
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
 }

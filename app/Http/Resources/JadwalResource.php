@@ -16,8 +16,8 @@ class JadwalResource extends JsonResource
     {
         return[
             'Instansi' => $this->instansi,
-            'UDD' => $this->nama,
-            'Target' => $this->jumlah,
+            'Waktu' => date('d F Y', strtotime($this->waktu)),
+            'Target' => $this->target.' Kantong',
             'Alamat' => $this->alamat,
         ];
     }

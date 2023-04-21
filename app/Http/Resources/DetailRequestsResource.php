@@ -28,7 +28,7 @@ class DetailRequestsResource extends JsonResource
             'Lng' => $this->bdrs_lng,
             'User' => $this->name,
             'UserGoldar' => $this->goldar,
-            'Created' => $this->requests_waktu
+            'Created' => date('d F Y', strtotime($this->requests_waktu))
         ];
     }
 }

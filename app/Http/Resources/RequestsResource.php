@@ -22,7 +22,7 @@ class RequestsResource extends JsonResource
             'JenisDonor' => $this->requests_jenis,
             'BDRS' => $this->bdrs_nama,
             'Kota' => $this->bdrs_kota,
-            'Created' => $this->requests_waktu
+            'Created' => date('d F Y', strtotime($this->requests_waktu))
         ];
     }
 }
