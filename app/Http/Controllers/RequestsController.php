@@ -72,7 +72,7 @@ class RequestsController extends Controller
     public function detail($id){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests.id_requests', '=', $id)
             ->get();
@@ -134,7 +134,8 @@ class RequestsController extends Controller
             'pasien_goldar' => 'required',
             'jenis_donor' => 'required',
             'jumlah_kantong' => 'required',
-            'kontak_peson' => 'required'
+            'kontak_nomor' => 'required',
+            'kontak_nama' => 'required'
 
         ]);
 
@@ -149,13 +150,23 @@ class RequestsController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }else{
             $requests = new Requests;
-            $requests->bdrs_id  = $request->bd;
+
+            $arr = explode(' ', $request->nama_pasien);
+            $singkatan = '';
+            foreach($arr as $kata)
+            {
+                $singkatan .= substr($kata, 0, 1);
+            };
+
+            $requests->bdrs_id  = $request->bdrs;
             $requests->user_id  = Auth::user()->id;
+            $requests->requests_slug  = $singkatan.$request->bdrs.$request->jumlah_kantong.rand(1000,9999);
             $requests->requests_pasien  = $request->nama_pasien;
             $requests->requests_goldar  = $request->pasien_goldar;
             $requests->requests_jenis  = $request->jenis_donor;
             $requests->requests_jumlah  = $request->jumlah_kantong;
-            $requests->requests_hp  = $request->kontak_peson;
+            $requests->requests_hp  = $request->kontak_nomor;
+            $requests->requests_nama  = $request->kontak_nama;
             $requests->requests_catatan  = $request->catatan;
             $respons = $requests->save();
     

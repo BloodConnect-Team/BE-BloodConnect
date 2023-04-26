@@ -7,24 +7,21 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\StokResource;
 use App\Http\Resources\JadwalResource;
-use App\Http\Resources\KontakResource;
 use Illuminate\Database\QueryException;
 
 class PMIController extends Controller
 {
-    public function stok($udd){
+    public function stok(){
         try {
-            $respons = DB::connection('mysql2')
-            ->table('stokdarah')
-            ->join('udd', 'stokdarah.udd', '=', 'udd.id')
-            ->where('udd.id', '=', $udd)
+            $respons = DB::table('stoks')
+            ->orderBy('created_at', 'desc')
             ->get();
             return response()->json([
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
                 'message' => 'Fetch all Stok UDD',
-                'data' => StokResource::collection($respons)
+                'data' => StokResource::collection($respons)->first()
 
             ], Response::HTTP_OK);
             

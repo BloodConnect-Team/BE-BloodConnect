@@ -31,17 +31,17 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 
 Route::get('/getReq', [RequestsController::class, 'index']);
 Route::get('/getReq/filter/{goldar}', [RequestsController::class, 'filter']);
-Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail'])->middleware('jwt.verify');
+Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail']);
 Route::get('/getReq/my', [RequestsController::class, 'my'])->middleware('jwt.verify');
-Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');
+Route::post('/postReq', [RequestsController::class, 'add']);
 
-Route::get('/getBDRS', [BdrsController::class, 'get']);
+Route::get('/getBDRS', [BdrsController::class, 'get'])->middleware('jwt.verify');
 
-Route::get('/getNews', [NewsController::class, 'get']);
-Route::get('/getNews/{id}', [NewsController::class, 'ById']);
+Route::get('/getNews', [NewsController::class, 'get'])->middleware('jwt.verify');
+Route::get('/getNews/{id}', [NewsController::class, 'ById'])->middleware('jwt.verify');
 
 
-Route::get('/pmi/jadwal', [PMIController::class, 'jadwal']);
+Route::get('/pmi/jadwal', [PMIController::class, 'jadwal'])->middleware('jwt.verify');
 Route::get('/pmi/stok/', [PMIController::class, 'stok']);
 
 

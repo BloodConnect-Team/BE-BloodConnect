@@ -19,7 +19,7 @@ class NewsResource extends JsonResource
             'Title' => $this->title,
             'Content' => $this->content,
             'Author' => $this->name,
-            'date' => $this->news_created,
+            'date' => date('d F Y', strtotime($this->news_created))
         ];    
     }
 }
