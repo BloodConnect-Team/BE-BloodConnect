@@ -22,7 +22,6 @@ use App\Http\Controllers\RequestsController;
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
   Route::post('register', [AuthController::class, 'register']);
   Route::post('forget', [AuthController::class, 'forget']);
-  Route::post('reset/{token}', [AuthController::class, 'reset']);
   Route::post('login', [AuthController::class, 'login']);
   Route::post('logout', [AuthController::class, 'logout']);
   Route::post('refresh', [AuthController::class, 'refresh']);

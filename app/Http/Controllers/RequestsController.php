@@ -100,7 +100,7 @@ class RequestsController extends Controller
     public function my(){
         try {
             $respons = DB::table('requests')
-            ->join('rs', 'requests.rs_id', '=', 'rs.id_rs')
+            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_rs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests.user_id', '=', Auth::user()->id)
             ->get();

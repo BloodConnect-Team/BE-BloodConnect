@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -91,10 +92,10 @@ class AuthController extends Controller
                 'email' => $request->email, 
                 'token' => $token, 
             ]); 
-            // Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-            //     $message->to($request->email);
-            //     $message->subject('Reset Password');
-            // });
+            Mail::send('forgetPassword', ['token' => $token], function($message) use($request){
+                $message->to($request->email);
+                $message->subject('Reset Password');
+            });
             return response()->json([
                 'response' => Response::HTTP_OK,
                 'success' => true,
@@ -103,30 +104,7 @@ class AuthController extends Controller
             ], Response::HTTP_OK);
         }
     }
-
-    public function reset($token, Request $request ){
-        $updatePassword = DB::table('password_resets')->where([
-            'email' => $request->email, 
-            'token' => $token
-        ])->first();
-  
-        if(!$updatePassword){
-            return response()->json([
-                'response' => Response::HTTP_FORBIDDEN,
-                'success' => false,
-                'message' => 'Invalid Token',
-                'data' => [],
-            ], Response::HTTP_FORBIDDEN);
-        }
-        User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-        DB::table('password_resets')->where(['email'=> $request->email])->delete();
-        return response()->json([
-            'response' => Response::HTTP_OK,
-            'success' => true,
-            'message' => 'password changed',
-            'data' => [],
-        ], Response::HTTP_OK);    }
-
+    
     public function me()
     {
         return response()->json(auth()->user());

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('login', [AuthController::class, 'resetForm']);
+
+
+Route::get('reset-password/{token}', [WebController::class, 'resetForm'])->name('reset.password.get');
+Route::post('reset-password', [WebController::class, 'reset'])->name('reset.password.post');
+Route::get('reset/sukses', [WebController::class, 'sukses'])->name('sukses');
+
