@@ -15,8 +15,7 @@ class StokResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'Update' => $this->update_on,
-            'Product' => $this->produk,
+            'Update' => $this->created_at,
             'A_pos' => $this->a_pos,
             'B_pos' => $this->b_pos,
             'O_pos' => $this->o_pos,

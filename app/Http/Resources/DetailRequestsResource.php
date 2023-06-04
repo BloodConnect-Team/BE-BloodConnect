@@ -21,14 +21,17 @@ class DetailRequestsResource extends JsonResource
             'GolonganDarah' => $this->requests_goldar,
             'JenisDonor' => $this->requests_jenis,
             'Kebutuhan' => $this->requests_jumlah,
+            'ContactPerson' => $this->requests_hp.'('.$this->requests_nama.')',
+            'WALink' => 'https://wa.me/'.$this->requests_hp,
             'Catatan' => $this->requests_catatan,
             'BDRS' => $this->bdrs_nama,
             'Kota' => $this->bdrs_kota,
             'Lat' => $this->bdrs_lat,
             'Lng' => $this->bdrs_lng,
+            'Maps' => 'https://www.google.com/maps/search/?api=1&query='.$this->bdrs_lat.','.$this->bdrs_lng,
             'User' => $this->name,
-            'UserGoldar' => $this->goldar,
-            'Created' => $this->requests_waktu
+            'UserPhoto' => $this->photo,
+            'Created' => date('d F Y', strtotime($this->requests_waktu))
         ];
     }
 }
