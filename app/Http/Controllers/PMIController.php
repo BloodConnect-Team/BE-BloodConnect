@@ -42,7 +42,7 @@ class PMIController extends Controller
         try {
             $respons = DB::table('jadwals')
             ->where('waktu', ">=", $tgl)
-            ->orderBy('waktu', 'desc')
+            ->orderBy('waktu', 'ASC')
             ->get();
             return response()->json([
 
