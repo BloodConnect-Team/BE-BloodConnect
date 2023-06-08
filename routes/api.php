@@ -45,7 +45,7 @@ Route::get('/pmi/jadwal', [PMIController::class, 'jadwal'])->middleware('jwt.ver
 Route::get('/pmi/stok/', [PMIController::class, 'stok'])->middleware('jwt.verify');
 
 Route::put('/account/update/{id}', [AccountController::class, 'update'])->middleware('jwt.verify');
-Route::put('/account/photo/{id}', [AccountController::class, 'photo'])->middleware('jwt.verify');
+Route::post('/account/photo/{id}', [AccountController::class, 'photo'])->middleware('jwt.verify');
 
 
 

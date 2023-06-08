@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AccountController extends Controller
 {
@@ -70,9 +71,7 @@ class AccountController extends Controller
     {    
         $validator = Validator::make($request->all(), [
 
-            'photo' => 'required',
-            'email' => 'required|email',
-            'goldar' => 'required'
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
 
         ]);
 
@@ -88,12 +87,12 @@ class AccountController extends Controller
         }else{
 
             try {
+                $imagePath = $request->file('photo')->getRealPath();
+                $result = Cloudinary::upload($imagePath,  ['folder' => 'bc/user']);
+                $imageUrl = $result->getSecurePath();
+
                 $user = User::findOrFail($id);
-                $user->name  = $request->name;
-                $user->email  = $request->email;
-                $user->goldar  = $request->goldar;
-                $user->city  = $request->city;
-                $user->hp  = $request->phone_number;
+                $user->photo  = $imageUrl;
                 $respons = $user->save();
         
                 return response()->json([
