@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use App\Models\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+
+class AccountController extends Controller
+{
+    public function update($id, Request $request)
+    {    
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+
+            'name' => 'required',
+            'email' => 'required|email',
+            'goldar' => 'required'
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+
+                'response' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                'success' => false,
+                'message' => $validator->errors(),
+                'data' => []
+
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }else{
+
+            try {
+                $user = User::findOrFail($id);
+                $user->name  = $request->name;
+                $user->email  = $request->email;
+                $user->goldar  = $request->goldar;
+                $user->city  = $request->city;
+                $user->hp  = $request->phone_number;
+                $respons = $user->save();
+        
+                return response()->json([
+    
+                    'response' => Response::HTTP_OK,
+                    'success' => true,
+                    'message' => 'User account update successfully.',
+                    'data' => $respons
+    
+                ], Response::HTTP_OK);
+                
+            } catch (QueryException $e) {
+                return response()->json([
+    
+                    'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                    'data' => []
+    
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
+
+    public function photo($id, Request $request)
+    {    
+        $validator = Validator::make($request->all(), [
+
+            'photo' => 'required',
+            'email' => 'required|email',
+            'goldar' => 'required'
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+
+                'response' => Response::HTTP_UNPROCESSABLE_ENTITY,
+                'success' => false,
+                'message' => $validator->errors(),
+                'data' => []
+
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }else{
+
+            try {
+                $user = User::findOrFail($id);
+                $user->name  = $request->name;
+                $user->email  = $request->email;
+                $user->goldar  = $request->goldar;
+                $user->city  = $request->city;
+                $user->hp  = $request->phone_number;
+                $respons = $user->save();
+        
+                return response()->json([
+    
+                    'response' => Response::HTTP_OK,
+                    'success' => true,
+                    'message' => 'User account update successfully.',
+                    'data' => $respons
+    
+                ], Response::HTTP_OK);
+                
+            } catch (QueryException $e) {
+                return response()->json([
+    
+                    'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                    'data' => []
+    
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
+}

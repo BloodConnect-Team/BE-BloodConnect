@@ -6,6 +6,7 @@ use App\Http\Controllers\PMIController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BdrsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\RequestsController;
 
 /*
@@ -25,7 +26,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
   Route::post('login', [AuthController::class, 'login']);
   Route::post('logout', [AuthController::class, 'logout']);
   Route::post('refresh', [AuthController::class, 'refresh']);
-  Route::post('me', [AuthController::class, 'me']);
+  Route::get('me', [AuthController::class, 'me']);
 });
 
 Route::get('/getReq', [RequestsController::class, 'index'])->middleware('jwt.verify');
@@ -42,6 +43,10 @@ Route::get('/getNews/{id}', [NewsController::class, 'ById'])->middleware('jwt.ve
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal'])->middleware('jwt.verify');
 Route::get('/pmi/stok/', [PMIController::class, 'stok'])->middleware('jwt.verify');
+
+Route::put('/account/update/{id}', [AccountController::class, 'update'])->middleware('jwt.verify');
+Route::put('/account/photo/{id}', [AccountController::class, 'photo'])->middleware('jwt.verify');
+
 
 
 

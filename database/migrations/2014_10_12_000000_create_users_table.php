@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('photo')->default('avatar.png');
+            $table->string('city')->nullable();
+            $table->string('hp')->nullable();
+            $table->string('photo')->default('https://res.cloudinary.com/do8klrf5z/image/upload/v1686156464/bc/blank_ycytgn.jpg');
             $table->rememberToken();
             $table->timestamps();
         });
