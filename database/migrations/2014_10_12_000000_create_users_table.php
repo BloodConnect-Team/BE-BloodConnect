@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('hp')->nullable();
             $table->string('photo')->default('https://res.cloudinary.com/do8klrf5z/image/upload/v1686156464/bc/blank_ycytgn.jpg');
+            $table->enum('role', [0, 1])->default(0);;
             $table->rememberToken();
             $table->timestamps();
         });
