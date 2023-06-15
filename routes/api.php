@@ -8,6 +8,7 @@ use App\Http\Controllers\BdrsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::get('/getNews/{id}', [NewsController::class, 'ById'])->middleware('jwt.ve
 
 Route::get('/pmi/jadwal', [PMIController::class, 'jadwal'])->middleware('jwt.verify');
 Route::get('/pmi/stok/', [PMIController::class, 'stok'])->middleware('jwt.verify');
+
+Route::get('/notification', [NotificationController::class, 'index'])->middleware('jwt.verify');
 
 Route::put('/account/update/{id}', [AccountController::class, 'update'])->middleware('jwt.verify');
 Route::post('/account/photo/{id}', [AccountController::class, 'photo'])->middleware('jwt.verify');
