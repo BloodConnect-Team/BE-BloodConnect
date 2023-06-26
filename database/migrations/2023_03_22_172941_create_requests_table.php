@@ -26,7 +26,7 @@ class CreateRequestsTable extends Migration
             $table->string('requests_nama');
             $table->timestamp('requests_waktu')->useCurrent();
             $table->text('requests_catatan')->nullable();
-            $table->enum('requests_status', [0, 1])->default(0);
+            $table->enum('requests_status', [0, 1, 2])->default(0);
             $table->timestamps();
         });
     }
