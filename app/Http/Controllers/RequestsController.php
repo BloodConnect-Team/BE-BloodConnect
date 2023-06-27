@@ -18,6 +18,7 @@ class RequestsController extends Controller
             $respons = DB::table('requests')
             ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
+            ->where('requests.requests_status', '=', '1')
             ->orderBy('requests.id_requests', 'asc')
             ->get();
             return response()->json([
@@ -47,6 +48,8 @@ class RequestsController extends Controller
             ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests_goldar', '=', $goldar)
+            ->where('requests.requests_status', '=', '1')
+            ->orderBy('requests.id_requests', 'asc')
             ->get();
             return response()->json([
 
@@ -100,7 +103,7 @@ class RequestsController extends Controller
     public function my(){
         try {
             $respons = DB::table('requests')
-            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_rs')
+            ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests.user_id', '=', Auth::user()->id)
             ->get();
@@ -128,7 +131,6 @@ class RequestsController extends Controller
     public function add(Request $request)
     {    
         $validator = Validator::make($request->all(), [
-
             'bdrs' => 'required',
             'nama_pasien' => 'required',
             'pasien_goldar' => 'required',
@@ -136,18 +138,17 @@ class RequestsController extends Controller
             'jumlah_kantong' => 'required',
             'kontak_nomor' => 'required',
             'kontak_nama' => 'required'
-
         ]);
 
         if ($validator->fails()) {
             return response()->json([
 
-                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'response' => Response::HTTP_UNPROCESSABLE_ENTITY,
                 'success' => false,
                 'message' => $validator->errors(),
                 'data' => []
 
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }else{
             $requests = new Requests;
 

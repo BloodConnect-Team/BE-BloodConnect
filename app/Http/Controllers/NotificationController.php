@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NotificationResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
-use App\Http\Resources\RequestsResource;
+use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class NotificationController extends Controller
 {
-    public function user(){
+    public function index(){
         try {
-            $respons = DB::table('users')
+            $respons = DB::table('notifications')
+            ->join('users', 'notifications.user_id', '=', 'users.id')
+            ->where('requests.user_id', '=', Auth::user()->id)
             ->get();
             return response()->json([
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch all',
-                'data' => RequestsResource::collection($respons)
+                'message' => 'Fetch my all',
+                'data' => NotificationResource::collection($respons)
 
             ], Response::HTTP_OK);
             

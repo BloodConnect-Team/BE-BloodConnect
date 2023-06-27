@@ -104,7 +104,7 @@ class AuthController extends Controller
             ], Response::HTTP_OK);
         }
     }
-    
+
     public function me()
     {
         return response()->json(auth()->user());
@@ -132,7 +132,7 @@ class AuthController extends Controller
         return response()->json([
             'response' => Response::HTTP_OK,
             'success' => true,
-            'message' => 'Login Successfully',
+            'message' => 'JWT Token refresh Successfully',
             'data' => [
                 'access_token' => $token,
                 'token_type' => 'bearer',
