@@ -65,4 +65,34 @@ class PMIController extends Controller
         }
     }
 
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+        $tgl = date("Y-m-d");
+        try {
+            $respons = DB::table('jadwals')
+            ->where('waktu', ">=", $tgl)
+            ->Where('instansi', 'like', "%$keyword%")
+            ->orderBy('waktu', 'ASC')
+            ->get();
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Search jadwal mu : '.$keyword,
+                'data' => JadwalResource::collection($respons)
+
+            ], Response::HTTP_OK);
+            
+        } catch (QueryException $e) {
+            return response()->json([
+
+                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => []
+
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
