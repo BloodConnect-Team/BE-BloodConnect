@@ -15,13 +15,13 @@ class NotificationController extends Controller
         try {
             $respons = DB::table('notifications')
             ->join('users', 'notifications.user_id', '=', 'users.id')
-            ->where('requests.user_id', '=', Auth::user()->id)
+            ->where('notifications.user_id', '=', Auth::user()->id)
             ->get();
             return response()->json([
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Fetch my all',
+                'message' => 'Fetch Notification',
                 'data' => NotificationResource::collection($respons)
 
             ], Response::HTTP_OK);
