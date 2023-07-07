@@ -35,6 +35,7 @@ Route::get('/getReq/search', [RequestsController::class, 'search'])->middleware(
 Route::get('/getReq/filter/{goldar}', [RequestsController::class, 'filter'])->middleware('jwt.verify');
 Route::get('/getReq/detail/{id}', [RequestsController::class, 'detail'])->middleware('jwt.verify');
 Route::get('/getReq/my', [RequestsController::class, 'my'])->middleware('jwt.verify');
+Route::post('/getReq/change_status/{id}', [RequestsController::class, 'change_status'])->middleware('jwt.verify');
 Route::post('/postReq', [RequestsController::class, 'add'])->middleware('jwt.verify');
 
 Route::get('/getBDRS', [BdrsController::class, 'get'])->middleware('jwt.verify');

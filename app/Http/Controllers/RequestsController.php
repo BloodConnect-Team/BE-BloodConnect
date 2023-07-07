@@ -159,6 +159,32 @@ class RequestsController extends Controller
         }
     }
 
+    public function change_status($id){
+        try {
+            DB::table('requests')
+            ->where('id_requests', $id)
+            ->update(['requests_status' => '2']);
+            return response()->json([
+
+                'response' => Response::HTTP_OK,
+                'success' => true,
+                'message' => 'Change Status Donor req',
+                'data' => []
+
+            ], Response::HTTP_OK);
+            
+        } catch (QueryException $e) {
+            return response()->json([
+
+                'response' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'success' => false,
+                'message' => $e->getMessage(),
+                'data' => []
+
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function add(Request $request)
     {    
         $validator = Validator::make($request->all(), [
