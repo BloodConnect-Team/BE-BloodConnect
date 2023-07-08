@@ -44,19 +44,19 @@ class RequestsController extends Controller
 
     public function search(Request $request){
         try {
-            $keyword = $request->input('keyword');
             $respons = DB::table('requests')
             ->join('bdrs', 'requests.bdrs_id', '=', 'bdrs.id_bdrs')
             ->join('users', 'requests.user_id', '=', 'users.id')
             ->where('requests.requests_status', '=', '1')
-            ->Where('requests.requests_pasien', 'like', "%$keyword%")
+            ->where('requests_goldar', 'like', "%$request->goldar%")
+            ->Where('requests.requests_pasien', 'like', "%$request->keyword%")
             ->orderBy('requests.id_requests', 'asc')
             ->get();
             return response()->json([
 
                 'response' => Response::HTTP_OK,
                 'success' => true,
-                'message' => 'Search req : '.$keyword,
+                'message' => 'Search req : '. ' goldar:',
                 'data' => RequestsResource::collection($respons)
 
             ], Response::HTTP_OK);
