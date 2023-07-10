@@ -18,7 +18,7 @@ class NewsResource extends JsonResource
             'id' => $this->id_news,
             'Image' => $this->image,
             'Title' => $this->title,
-            'Content' => $this->content,
+            'Content' => strip_tags($this->content),
             'Author' => $this->name,
             'date' => date('d F Y', strtotime($this->news_created))
         ];    
