@@ -16,6 +16,7 @@ class NotificationController extends Controller
             $respons = DB::table('notifications')
             ->join('users', 'notifications.user_id', '=', 'users.id')
             ->where('notifications.user_id', '=', Auth::user()->id)
+            ->limit(10)
             ->get();
             return response()->json([
 
