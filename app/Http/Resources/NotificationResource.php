@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class NotificationResource extends JsonResource
@@ -16,7 +17,7 @@ class NotificationResource extends JsonResource
     {
         return[
             'Pesan' => $this->message,
-            'Tanggal' => $this->date,
+            'Tanggal' => Carbon::parse($this->date)->diffForHumans(),
         ];
     }
 }
